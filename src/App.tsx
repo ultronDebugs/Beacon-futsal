@@ -8,6 +8,7 @@ import { auth } from "./utils/firebase.utils";
 import { nullUserState, updateUserState } from "./redux/userSlice";
 // import type { RootState } from "./redux/store";
 import { useEffect } from "react";
+import Home from "./pages/Home";
 
 function App() {
   // const [userState, setUserState] = useState<null | User>(null);
@@ -38,7 +39,7 @@ function App() {
       {/* <div onClick={getUserAuth}> something</div> */}
       <Navbar />
       <Routes>
-        <Route path="/" element={<h1>home page</h1>} />
+        <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="signin" element={<SignIn />} />
       </Routes>
