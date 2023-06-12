@@ -21,6 +21,7 @@ export default function Navbar() {
   const userState = useSelector((state: RootState) => state.user.value);
 
   const photoUrl = userState?.photoUrl;
+  // console.log(photoUrl);
 
   return (
     <Disclosure as="nav" className="bg-gray-800">

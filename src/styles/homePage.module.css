@@ -1,0 +1,4 @@
+.landingImage {
+  background-image: url(./../assets/pitchLanscape.jpg);
+  background-size: cover;
+}

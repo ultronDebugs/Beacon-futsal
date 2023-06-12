@@ -33,7 +33,7 @@ function App() {
       console.log("user data not in state", data);
     });
   };
-  useEffect(getUserAuth, [dispatch]);
+  useEffect(getUserAuth, []);
   return (
     <>
       {/* <div onClick={getUserAuth}> something</div> */}
