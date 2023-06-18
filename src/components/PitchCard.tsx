@@ -1,6 +1,6 @@
 "use client";
 
-import { Card } from "flowbite-react";
+// import { Card } from "flowbite-react";
 
 export default function PitchCard({
   pitchImage,
