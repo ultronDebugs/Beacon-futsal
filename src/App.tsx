@@ -9,6 +9,7 @@ import { nullUserState, updateUserState } from "./redux/userSlice";
 // import type { RootState } from "./redux/store";
 import { useEffect } from "react";
 import Home from "./pages/Home";
+import Footer from "./components/Footer";
 
 function App() {
   // const [userState, setUserState] = useState<null | User>(null);
@@ -43,6 +44,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="signin" element={<SignIn />} />
       </Routes>
+      <Footer />
     </>
   );
 }
