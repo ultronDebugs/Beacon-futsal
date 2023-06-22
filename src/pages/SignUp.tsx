@@ -6,14 +6,14 @@ import { signInWithGoogle } from "../utils/firebase.utils";
 export default function SignUp() {
   return (
     <>
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+      <div className="flex min-h-full h-[90vh]  flex-1 dark:bg-gray-900 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             className="mx-auto h-20 rounded-full w-auto"
             src={pitch}
             alt="Beacon"
           />
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          <h2 className="mt-10 text-center text-2xl font-bold leading-9 dark:text-white tracking-tight text-gray-900">
             Create an Account with us
           </h2>
         </div>
@@ -24,7 +24,7 @@ export default function SignUp() {
             <div>
               <label
                 htmlFor="firstName"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-medium leading-6 dark:text-white text-gray-900"
               >
                 First Name
               </label>
@@ -43,7 +43,7 @@ export default function SignUp() {
             <div>
               <label
                 htmlFor="lastName"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block dark:text-white text-sm font-medium leading-6 text-gray-900"
               >
                 Last Name
               </label>
@@ -62,7 +62,7 @@ export default function SignUp() {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block dark:text-white text-sm font-medium leading-6 text-gray-900"
               >
                 Email address
               </label>
@@ -79,10 +79,10 @@ export default function SignUp() {
             </div>
 
             <div>
-              <div className="flex items-center justify-between">
+              <div className="flex  items-center justify-between">
                 <label
                   htmlFor="password"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block text-sm dark:text-white font-medium leading-6 text-gray-900"
                 >
                   Password
                 </label>
