@@ -35,12 +35,12 @@ export default function Home() {
       <ContentSection2 />
       <ContentSection3 />
       <ContactForm />
-      <PitchCard
+      {/* <PitchCard
         pitchDescription="lorem ipsumwdkhb"
         pitchName="Plutous club House"
         pitchLocation="Kaduna, nigeria"
         pitchImage={pitch}
-      />
+      /> */}
       {/* <DestinationsCard
         city="kaduna state"
         country="Nigeria"
