@@ -12,19 +12,22 @@ export default function DestinationsCard({
     "block",
     "overflow-hidden",
     "rounded-xl",
+    "w-[345px]",
+    "h-[195px]",
+    "grow",
     "bg-cover",
     "bg-center",
     "bg-no-repeat",
     `bg-[url(${imageUrl})]`,
   ];
 
-  console.log(backgroundClasses.join(" "));
+  // console.log(backgroundClasses.join(" "));
 
   return (
     <a href="#" className={backgroundClasses.join(" ")}>
-      <div className="absolute inset-0 bg-black/25"></div>
+      <div className="absolute  inset-0 bg-black/25"></div>
 
-      <div className="relative flex items-start justify-between p-4 sm:p-6 lg:p-8">
+      <div className="relative  flex items-start justify-between p-4 sm:p-6 lg:p-8">
         <div className="sm:pt-18 pt-12 text-white lg:pt-24">
           <h3 className="text-xl font-bold sm:text-2xl">{city}</h3>
 
@@ -46,6 +49,3 @@ export default function DestinationsCard({
     </a>
   );
 }
-
-// COPY
-// Hey there 👋 we want to make Tailwind

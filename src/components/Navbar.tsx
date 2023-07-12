@@ -20,9 +20,9 @@ function classNames(...classes: string[]) {
 
 export default function Navbar() {
   const userState = useSelector((state: RootState) => state.user.value);
+  // console.log(userState);
 
   const photoUrl = userState?.photoUrl;
-  // console.log(photoUrl);
 
   return (
     <Disclosure as="nav" className="bg-gray-800">

@@ -25,7 +25,7 @@ export default function SignIn() {
         <body class="h-full">
         ```
       */}
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+      <div className="flex min-h-full h-[85vh] flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             className="mx-auto h-20 rounded-full w-auto"
@@ -90,7 +90,7 @@ export default function SignIn() {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-slate-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-slate-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-600"
+                className="flex w-full justify-center rounded-md dark:bg-blue-800 bg-slate-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-slate-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-600"
               >
                 Sign in
               </button>

@@ -4,10 +4,7 @@ import ContactForm from "../components/ContactForm";
 import ContentSection1 from "../components/ContentSection1";
 import ContentSection2 from "../components/ContentSection2";
 import ContentSection3 from "../components/ContentSection3";
-import DestinationsCard from "../components/DestinationsCard";
 import Hero from "../components/Hero";
-import PitchCard from "../components/PitchCard";
-import pitch from "../assets/pitchLanscape.jpg";
 
 const locations = [
   {

@@ -12,6 +12,7 @@ import Home from "./pages/Home";
 import Footer from "./components/Footer";
 import NotFoundPage from "./pages/NotFoundPage";
 import SelectPitchPage from "./pages/SelectPitchPage";
+import PitchInfoPage from "./pages/PitchInfoPage";
 
 function App() {
   // const [userState, setUserState] = useState<null | User>(null);
@@ -45,8 +46,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="signin" element={<SignIn />} />
-        <Route path="/pitch" element={<SelectPitchPage />} />
+        <Route path="/pitches" element={<SelectPitchPage />} />
         <Route path="/:id" element={<NotFoundPage />} />
+        <Route path="/pitch" element={<PitchInfoPage />} />
       </Routes>
       <Footer />
     </>
