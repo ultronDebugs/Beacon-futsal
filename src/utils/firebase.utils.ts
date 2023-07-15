@@ -4,6 +4,8 @@ import {
   GoogleAuthProvider,
   getAuth,
   signInWithPopup,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
 // import { getAnalytics } from "firebase/analytics";
@@ -33,6 +35,27 @@ export const userSignOut = () => {
 
 const provider = new GoogleAuthProvider();
 provider.setCustomParameters({ prompt: "select_account" });
+
+export const signupUserWithEmailAndPassword = (
+  email: string,
+  password: string
+) => {
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      console.log(user);
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode, errorMessage);
+      // ..
+    });
+};
+
+// export const signinWitEmailAndPassword=
 
 export const signInWithGoogle = async () => {
   let signedInUser = {};

@@ -13,6 +13,7 @@ import Footer from "./components/Footer";
 import NotFoundPage from "./pages/NotFoundPage";
 import SelectPitchPage from "./pages/SelectPitchPage";
 import PitchInfoPage from "./pages/PitchInfoPage";
+import AddPitchPage from "./pages/AddPitchPage";
 
 function App() {
   // const [userState, setUserState] = useState<null | User>(null);
@@ -49,6 +50,7 @@ function App() {
         <Route path="/pitches" element={<SelectPitchPage />} />
         <Route path="/:id" element={<NotFoundPage />} />
         <Route path="/pitch" element={<PitchInfoPage />} />
+        <Route path="/addPitch" element={<AddPitchPage />} />
       </Routes>
       <Footer />
     </>
