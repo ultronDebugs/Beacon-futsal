@@ -1,9 +1,14 @@
+import { useState } from "react";
 import pitch from "../assets/pitch.jpg";
 // import type { RootState } from "../redux/store";
+import { signUpUserWithEmailAndPassword } from "../utils/firebase.utils";
 import { signInWithGoogle } from "../utils/firebase.utils";
 // import { nullUserState, updateUserState } from "../redux/userSlice";
 
 export default function SignUp() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [Name, setname] = useState("");
   return (
     <>
       <div className="flex min-h-full h-[90vh]  flex-1 dark:bg-gray-900 flex-col justify-center px-6 py-12 lg:px-8">
@@ -23,19 +28,22 @@ export default function SignUp() {
             {/* first name input and label */}
             <div>
               <label
-                htmlFor="firstName"
+                htmlFor="Display name"
                 className="block text-sm font-medium leading-6 dark:text-white text-gray-900"
               >
-                First Name
+                Display Name
               </label>
               <div className="mt-2">
                 <input
                   id="firstName"
                   name="firstName"
                   type="text"
-                  autoComplete="firstname"
+                  onChange={(e) => {
+                    setname(e.target.value);
+                  }}
+                  autoComplete="Display Name"
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full pl-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -100,7 +108,14 @@ export default function SignUp() {
             </div>
 
             <div>
-              <button className="flex w-full justify-center rounded-md bg-slate-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-slate-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-600">
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  signUpUserWithEmailAndPassword(email, password);
+                }}
+                type="submit"
+                className="flex w-full justify-center rounded-md bg-slate-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-slate-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-600"
+              >
                 Sign Up
               </button>
             </div>

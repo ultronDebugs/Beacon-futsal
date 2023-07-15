@@ -36,7 +36,7 @@ export const userSignOut = () => {
 const provider = new GoogleAuthProvider();
 provider.setCustomParameters({ prompt: "select_account" });
 
-export const signupUserWithEmailAndPassword = (
+export const signUpUserWithEmailAndPassword = (
   email: string,
   password: string
 ) => {
