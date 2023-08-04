@@ -1,5 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+// import { initializeFirestore } from "firebase/firestore";
+
 import {
   GoogleAuthProvider,
   getAuth,
@@ -55,7 +57,17 @@ export const signUpUserWithEmailAndPassword = (
     });
 };
 
-// export const signinWitEmailAndPassword=
+export const signInWithPassword = (email: string, password: string) => {
+  signInWithEmailAndPassword(auth, email, password)
+    .then((cred) => {
+      cred.user;
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode, errorMessage);
+    });
+};
 
 export const signInWithGoogle = async () => {
   let signedInUser = {};

@@ -1,7 +1,7 @@
 export default function ContactForm() {
   return (
     <>
-      <section className="bg-gray-800 dark:bg-gray-800">
+      <section className="bg-white dark:bg-gray-800">
         <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
           <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">
             Contact Us

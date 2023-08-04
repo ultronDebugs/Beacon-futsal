@@ -1,3 +1,6 @@
+// import Hero from "../components/Hero";
+// import { Carousel } from "flowbite-react";
+
 export default function AddPitchPage() {
   return (
     <div>
@@ -68,10 +71,8 @@ export default function AddPitchPage() {
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                 >
                   <option selected>Select category</option>
-                  <option value="TV">TV/Monitors</option>
-                  <option value="PC">PC</option>
-                  <option value="GA">Gaming/Console</option>
-                  <option value="PH">Phones</option>
+                  <option value="TV">5 Aside</option>
+                  <option value="PC">7 Aside</option>
                 </select>
               </div>
               <div>
@@ -114,6 +115,7 @@ export default function AddPitchPage() {
           </form>
         </div>
       </section>
+      {/* <Hero /> */}
     </div>
   );
 }

@@ -38,7 +38,7 @@ function App() {
       console.log("user data not in state", data);
     });
   };
-  useEffect(getUserAuth, []);
+  useEffect(getUserAuth, [dispatch]);
   return (
     <>
       {/* <div onClick={getUserAuth}> something</div> */}
@@ -49,7 +49,7 @@ function App() {
         <Route path="signin" element={<SignIn />} />
         <Route path="/pitches" element={<SelectPitchPage />} />
         <Route path="/:id" element={<NotFoundPage />} />
-        <Route path="/pitch" element={<PitchInfoPage />} />
+        <Route path="/pitch/:id" element={<PitchInfoPage />} />
         <Route path="/addPitch" element={<AddPitchPage />} />
       </Routes>
       <Footer />
