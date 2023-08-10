@@ -1,6 +1,12 @@
+import { useState } from "react";
+import LoginModal from "../components/LoginModal";
+import { createPortal } from "react-dom";
+const portal = document.getElementById("portal");
+
 export default function NotFoundPage() {
+  const [openModal, setOpenModal] = useState<boolean | undefined>(true);
   return (
-    <section className="bg-white h-[90vh]  dark:bg-gray-900">
+    <section className="bg-white h-[150vh]  dark:bg-gray-900">
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
         <div className="mx-auto max-w-screen-sm text-center">
           <h1 className="mb-4 text-7xl tracking-tight font-extrabold lg:text-9xl text-blue-600 dark:text-primary-500">
@@ -21,6 +27,19 @@ export default function NotFoundPage() {
           </a>
         </div>
       </div>
+
+      <button
+        onClick={() => {
+          setOpenModal(!openModal);
+        }}
+        className="bg-blue-700"
+      >
+        Show Modal
+      </button>
+      {createPortal(
+        <LoginModal openModal={openModal} setOpenModal={setOpenModal} />,
+        portal as HTMLElement
+      )}
     </section>
   );
 }
