@@ -1,7 +1,7 @@
 import { useState } from "react";
-import LoginModal from "../components/LoginModal";
-import { createPortal } from "react-dom";
-const portal = document.getElementById("portal");
+// import LoginModal from "../components/LoginModal";
+// import { createPortal } from "react-dom";
+// const portal = document.getElementById("portal");
 
 export default function NotFoundPage() {
   const [openModal, setOpenModal] = useState<boolean | undefined>(true);
@@ -36,10 +36,6 @@ export default function NotFoundPage() {
       >
         Show Modal
       </button>
-      {createPortal(
-        <LoginModal openModal={openModal} setOpenModal={setOpenModal} />,
-        portal as HTMLElement
-      )}
     </section>
   );
 }

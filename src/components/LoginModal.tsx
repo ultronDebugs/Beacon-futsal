@@ -1,15 +1,13 @@
-import { Dispatch } from "react";
-
 export default function LoginModal({
   openModal,
   setOpenModal,
 }: {
-  openModal: boolean | undefined;
-  setOpenModal: Dispatch<boolean | undefined>;
+  openModal: boolean;
+  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   if (openModal) {
     return (
-      <>
+      <div className="w-screen">
         <div
           onClick={() => {
             setOpenModal(!openModal);
@@ -98,7 +96,7 @@ export default function LoginModal({
             </p>
           </form>
         </div>
-      </>
+      </div>
     );
   } else {
     return null;
