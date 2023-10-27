@@ -35,6 +35,7 @@ export default function SignUp() {
               </label>
               <div className="mt-2">
                 <input
+                  placeholder="first name"
                   id="firstName"
                   name="firstName"
                   type="text"

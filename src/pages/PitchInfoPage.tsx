@@ -5,24 +5,38 @@ import pic2 from "../assets/pitchLanscape.jpg";
 import pic3 from "../assets/pitchPortrait2.jpg";
 import pic4 from "../assets/pitchPortrait1.jpg";
 const images = [boot, pic, pic2, pic3, pic4];
+import moment from "moment";
+// import Datepicker from "react-tailwindcss-datepicker";
+// import {} from "flowbite-react"
+import TimeBoard from "./TimeBoard";
+// import { useState } from "react";
+
 // import CarouselComponent from "../components/CarouselComponent";
 //
 export default function PitchInfoPage() {
+  const today = moment().format("YYYY-MM-DD");
+  // console.log(today);
   return (
-    <div className="h-[105vh] bg-white pt-4 dark:bg-gray-900">
-      <div className="xl:w-1/2">
-        {/* <CarouselComponent /> */}
-        <Carousel slide={true} style={{ height: "50vh" }} slideInterval={5000}>
-          {images.map((image) => {
-            return (
-              <img
-                src={image}
-                key={image}
-                className="h-auto object-center  w-auto"
-              />
-            );
-          })}
-        </Carousel>
+    <div className="h-[190vh] bg-white pt-4 dark:bg-gray-900">
+      <div className=" flex justify-center w-auto  border border-black ">
+        <div className="xl:w-2/3">
+          <Carousel
+            slide={true}
+            style={{ height: "70vh", width: "" }}
+            slideInterval={5000}
+          >
+            {images.map((image) => {
+              return (
+                <img
+                  src={image}
+                  key={image}
+                  alt={""}
+                  className="h-auto object-center w-auto"
+                />
+              );
+            })}
+          </Carousel>
+        </div>
       </div>
 
       <section className="bg-white dark:bg-gray-900">
@@ -90,6 +104,26 @@ export default function PitchInfoPage() {
               Book this Pitch
             </button>
           </div>
+        </div>
+        <div
+          className="flex
+        justify-center my-8"
+        >
+          <input
+            className="w-40 text-center h-10 bg-slate-500 text-blue-100 rounded-md outline-none "
+            placeholder="select date"
+            type="date"
+            // min={"2023-10-27"}
+            min={today}
+            onChange={(e) => {
+              console.log(e.target.value, "from input change");
+            }}
+          />
+        </div>
+        <div className="flex justify-around flex-wrap">
+          {/* <Datepicker /> */}
+
+          <TimeBoard />
         </div>
       </section>
     </div>

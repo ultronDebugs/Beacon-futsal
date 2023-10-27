@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-// import { initializeFirestore } from "firebase/firestore";
+// import * as firestore from "firebase/firestore";
 
 import {
   GoogleAuthProvider,
@@ -18,6 +18,7 @@ import {
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
 const firebaseConfig = {
   apiKey: "AIzaSyCF2zSgYCMVG3OvsjBN6pxumRir_TOhfFA",
   authDomain: "bookish-winner.firebaseapp.com",
@@ -30,6 +31,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
 export const auth = getAuth(app);
 export const userSignOut = () => {
   signOut(auth);
@@ -70,7 +72,7 @@ export const signInWithPassword = (email: string, password: string) => {
 };
 
 export const signInWithGoogle = async () => {
-  let signedInUser = {};
+  // let signedInUser = {};
   signInWithPopup(auth, provider)
     .then(async (result) => {
       // signedInUser = result.user;
@@ -85,23 +87,17 @@ export const signInWithGoogle = async () => {
       return user;
       // ...
     })
-    .then((user) => (signedInUser = user))
+    .then((user) => console.log(user))
     .catch((error) => {
       // Handle Errors here.
-      const errorCode = error.code;
-      console.log(errorCode);
-      const errorMessage = error.message;
-      console.log(errorMessage);
-      // The email of the user's account used.
-      const email = error.customData.email;
-      console.log(email);
+      console.log(error);
       // The AuthCredential type that was used.
       const credential = GoogleAuthProvider.credentialFromError(error);
       console.log(credential);
       // ...
     });
 
-  return signedInUser;
+  // return signedInUser;
 };
 
 // const analytics = getAnalytics(app);

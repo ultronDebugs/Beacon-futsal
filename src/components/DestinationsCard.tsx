@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function DestinationsCard({
   city,
   country,
@@ -27,7 +29,7 @@ export default function DestinationsCard({
   // console.log(backgroundClasses.join(" "));
 
   return (
-    <a href={`pitch/${pitchName}`} className={backgroundClasses.join(" ")}>
+    <Link to={`pitch/${pitchName}`} className={backgroundClasses.join(" ")}>
       <img src={imageUrl} className="-z-10  absolute " />
 
       <div className="absolute  inset-0 bg-black/30 hover:bg-black/30"></div>
@@ -51,6 +53,6 @@ export default function DestinationsCard({
           </svg>
         </span>
       </div>
-    </a>
+    </Link>
   );
 }

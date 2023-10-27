@@ -1,10 +1,10 @@
-import { useState } from "react";
+// import { useState } from "react";
 // import LoginModal from "../components/LoginModal";
 // import { createPortal } from "react-dom";
 // const portal = document.getElementById("portal");
 
 export default function NotFoundPage() {
-  const [openModal, setOpenModal] = useState<boolean | undefined>(true);
+  // const [openModal, setOpenModal] = useState<boolean | undefined>(true);
   return (
     <section className="bg-white h-[150vh]  dark:bg-gray-900">
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
@@ -28,14 +28,14 @@ export default function NotFoundPage() {
         </div>
       </div>
 
-      <button
+      {/* <button
         onClick={() => {
           setOpenModal(!openModal);
         }}
         className="bg-blue-700"
       >
         Show Modal
-      </button>
+      </button> */}
     </section>
   );
 }

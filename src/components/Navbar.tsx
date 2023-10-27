@@ -6,6 +6,7 @@ import type { RootState } from "../redux/store";
 import { useSelector } from "react-redux";
 import { userSignOut } from "../utils/firebase.utils";
 import { Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const navigation = [
   { name: "Dashboard", href: "#", current: true },
@@ -23,6 +24,14 @@ export default function Navbar() {
   // console.log(userState);
 
   const photoUrl = userState?.photoUrl;
+  console.log(photoUrl);
+  const { user, loginWithPopup, isAuthenticated, logout } = useAuth0();
+
+  const tryLogin = () => {
+    loginWithPopup().then((value) => {
+      console.log("user has logged in the app, here is value >>>", value);
+    });
+  };
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -91,7 +100,7 @@ export default function Navbar() {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src={photoUrl as string}
+                        src={user?.picture as string}
                         alt="profile-photo"
                       />
                     </Menu.Button>
@@ -135,7 +144,9 @@ export default function Navbar() {
                       <Menu.Item>
                         {({ active }) => (
                           <p
-                            onClick={userSignOut}
+                            onClick={() => {
+                              logout;
+                            }}
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
@@ -145,6 +156,21 @@ export default function Navbar() {
                           </p>
                         )}
                       </Menu.Item>
+                      {!isAuthenticated ? (
+                        <Menu.Item>
+                          {({ active }) => (
+                            <p
+                              onClick={tryLogin}
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                            >
+                              Auth0login
+                            </p>
+                          )}
+                        </Menu.Item>
+                      ) : null}
                     </Menu.Items>
                   </Transition>
                 </Menu>
