@@ -6,11 +6,8 @@ import pic3 from "../assets/pitchPortrait2.jpg";
 import pic4 from "../assets/pitchPortrait1.jpg";
 const images = [boot, pic, pic2, pic3, pic4];
 import moment from "moment";
-// import Datepicker from "react-tailwindcss-datepicker";
-// import {} from "flowbite-react"
 import TimeBoard from "./TimeBoard";
-// import { useState } from "react";
-
+import PaystackButton from "../components/PaystackButton";
 // import CarouselComponent from "../components/CarouselComponent";
 //
 export default function PitchInfoPage() {
@@ -125,6 +122,7 @@ export default function PitchInfoPage() {
 
           <TimeBoard />
         </div>
+        <PaystackButton amount={10000} />
       </section>
     </div>
   );
