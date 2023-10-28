@@ -7,7 +7,8 @@ import pic4 from "../assets/pitchPortrait1.jpg";
 const images = [boot, pic, pic2, pic3, pic4];
 import moment from "moment";
 import TimeBoard from "./TimeBoard";
-import PaystackButton from "../components/PaystackButton";
+import PaymentButton from "../components/PaymentButton";
+
 // import CarouselComponent from "../components/CarouselComponent";
 //
 export default function PitchInfoPage() {
@@ -122,7 +123,7 @@ export default function PitchInfoPage() {
 
           <TimeBoard />
         </div>
-        <PaystackButton amount={10000} />
+        <PaymentButton amount={10000} />
       </section>
     </div>
   );

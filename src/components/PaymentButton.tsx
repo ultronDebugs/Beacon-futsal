@@ -1,6 +1,6 @@
-import { usePaystackPayment } from "react-paystack";
+import { usePaystackPayment, PaystackButton } from "react-paystack";
 
-export default function PaystackButton({ amount }: { amount: number }) {
+export default function PaymentButton({ amount }: { amount: number }) {
   const config = {
     reference: new Date().getTime().toString(),
     email: "user@example.com",
