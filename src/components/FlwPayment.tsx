@@ -1,15 +1,24 @@
 import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
+import { toast } from "react-toastify";
 
-export default function FlwPayment() {
+export default function FlwPayment({
+  email,
+  phoneNumber,
+  Amount,
+}: {
+  email: string;
+  phoneNumber: string;
+  Amount: number;
+}) {
   const config = {
     public_key: "FLWPUBK_TEST-4e43205694a70c38fcd90dfb41934a43-X",
     tx_ref: Date.now().toString(),
-    amount: 100,
+    amount: Amount,
     currency: "NGN",
     payment_options: "card,mobilemoney,ussd",
     customer: {
-      email: "user@gmail.com",
-      phone_number: "070********",
+      email: email,
+      phone_number: phoneNumber,
       name: "john doe",
       subAccounts: [
         {
@@ -30,23 +39,27 @@ export default function FlwPayment() {
   };
   const handleFlutterPayment = useFlutterwave(config);
   return (
-    <div>
-      {" "}
+    <>
       <button
+        className="px-10 rounded-md text-white hover:bg-blue-800 bg-blue-600 py-4"
         onClick={() => {
           handleFlutterPayment({
             callback: (response) => {
               console.log(response);
               closePaymentModal(); // this will close the modal programmatically
+              toast.success(
+                "booking payment succesful pls check your email and text messages for receipt "
+              );
             },
             onClose: () => {
               console.log("Closed payment modal");
+              toast.error("opps something went wrong , payment not completed");
             },
           });
         }}
       >
-        Payment with React hooks
+        Pay Now
       </button>
-    </div>
+    </>
   );
 }

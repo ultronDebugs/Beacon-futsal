@@ -5,9 +5,11 @@ import Navbar from "./components/Navbar";
 import { useDispatch } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./utils/firebase.utils";
+import "react-toastify/dist/ReactToastify.css";
 import { nullUserState, updateUserState } from "./redux/userSlice";
 // import type { RootState } from "./redux/store";
 import { useEffect } from "react";
+import { ToastContainer } from "react-toastify";
 import Home from "./pages/Home";
 import Footer from "./components/Footer";
 import NotFoundPage from "./pages/NotFoundPage";
@@ -46,6 +48,7 @@ function App() {
   return (
     <>
       {/* <div onClick={getUserAuth}> something</div> */}
+      <ToastContainer />
       <Navbar />
       {/* {createPortal(
         <LoginModal openModal={openModal} setOpenModal={setOpenModal} />,

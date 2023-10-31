@@ -3,37 +3,36 @@ import boot from "../assets/boot.png";
 import pic from "../assets/pitch.jpg";
 import pic2 from "../assets/pitchLanscape.jpg";
 import pic3 from "../assets/pitchPortrait2.jpg";
-import pic4 from "../assets/pitchPortrait1.jpg";
-const images = [boot, pic, pic2, pic3, pic4];
 import moment from "moment";
 import TimeBoard from "./TimeBoard";
 import PaymentButton from "../components/PaymentButton";
+import FlwPayment from "../components/FlwPayment";
+import { ImageSlider } from "../components/ImageSlider";
+import CheckOutTable from "../components/CheckOutTable";
 
-// import CarouselComponent from "../components/CarouselComponent";
 //
 export default function PitchInfoPage() {
   const today = moment().format("YYYY-MM-DD");
+  const images = [
+    { url: boot, alt: "image" },
+    { url: pic, alt: "image" },
+    { url: pic2, alt: "image" },
+    { url: pic3, alt: "image" },
+  ];
   // console.log(today);
   return (
-    <div className="h-[190vh] bg-white pt-4 dark:bg-gray-900">
+    <div className="h-[210vh] bg-white pt-4 dark:bg-gray-900">
       <div className=" flex justify-center w-auto  border border-black ">
-        <div className="xl:w-2/3">
-          <Carousel
-            slide={true}
-            style={{ height: "70vh", width: "" }}
-            slideInterval={5000}
-          >
-            {images.map((image) => {
-              return (
-                <img
-                  src={image}
-                  key={image}
-                  alt={""}
-                  className="h-auto object-center w-auto"
-                />
-              );
-            })}
-          </Carousel>
+        <div
+          className=""
+          style={{
+            maxWidth: "1200px",
+            width: "100%",
+            aspectRatio: "10 / 6",
+            margin: "0 auto",
+          }}
+        >
+          <ImageSlider images={images} />
         </div>
       </div>
 
@@ -105,7 +104,7 @@ export default function PitchInfoPage() {
         </div>
         <div
           className="flex
-        justify-center my-8"
+        justify-center items-center gap-x-3 md:gap-24 my-8"
         >
           <input
             className="w-40 text-center h-10 bg-slate-500 text-blue-100 rounded-md outline-none "
@@ -117,13 +116,21 @@ export default function PitchInfoPage() {
               console.log(e.target.value, "from input change");
             }}
           />
+          <TimeBoard />
         </div>
         <div className="flex justify-around flex-wrap">
           {/* <Datepicker /> */}
 
-          <TimeBoard />
+          <CheckOutTable />
         </div>
         <PaymentButton amount={10000} />
+        <div className="flex justify-center mt-4 mb-9">
+          <FlwPayment
+            Amount={10000}
+            email="customer@gmail.com"
+            phoneNumber="07083187511"
+          />
+        </div>
       </section>
     </div>
   );
