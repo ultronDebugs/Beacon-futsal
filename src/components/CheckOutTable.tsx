@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function CheckOutTable() {
   return (
     <div className="relative overflow-x-auto">

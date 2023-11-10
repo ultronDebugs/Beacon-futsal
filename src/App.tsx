@@ -2,13 +2,13 @@ import { Routes, Route } from "react-router-dom";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Navbar from "./components/Navbar";
-import { useDispatch } from "react-redux";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./utils/firebase.utils";
+// import { useDispatch } from "react-redux";
+// import { onAuthStateChanged } from "firebase/auth";
+// import { auth } from "./utils/firebase.utils";
 import "react-toastify/dist/ReactToastify.css";
-import { nullUserState, updateUserState } from "./redux/userSlice";
+// import { nullUserState, updateUserState } from "./redux/userSlice";
 // import type { RootState } from "./redux/store";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import Home from "./pages/Home";
 import Footer from "./components/Footer";
@@ -26,25 +26,25 @@ function App() {
   // const [openModal, setOpenModal] = useState(true);
 
   // const userState = useSelector((state: RootState) => state.user.value);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const getUserAuth = () => {
-    onAuthStateChanged(auth, (data) => {
-      if (data === null) {
-        dispatch(nullUserState);
-      }
-      dispatch(
-        updateUserState({
-          displayName: data?.displayName,
-          email: data?.email,
-          uid: data?.uid,
-          photoUrl: data?.photoURL,
-        })
-      );
-      console.log("user data not in state", data);
-    });
-  };
-  useEffect(getUserAuth, [dispatch]);
+  // const getUserAuth = () => {
+  //   onAuthStateChanged(auth, (data) => {
+  //     if (data === null) {
+  //       dispatch(nullUserState);
+  //     }
+  //     dispatch(
+  //       updateUserState({
+  //         displayName: data?.displayName,
+  //         email: data?.email,
+  //         uid: data?.uid,
+  //         photoUrl: data?.photoURL,
+  //       })
+  //     );
+  //     console.log("user data not in state", data);
+  //   });
+  // };
+  // useEffect(getUserAuth, [dispatch]);
   return (
     <>
       {/* <div onClick={getUserAuth}> something</div> */}

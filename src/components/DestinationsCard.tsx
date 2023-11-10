@@ -2,14 +2,14 @@ import { Link } from "react-router-dom";
 
 export default function DestinationsCard({
   city,
-  country,
   imageUrl,
   pitchName,
+  pitchId,
 }: {
   city: string;
-  country: string;
   imageUrl: string;
-  pitchName: number;
+  pitchName: string;
+  pitchId: string;
 }) {
   const backgroundClasses = [
     "relative",
@@ -29,16 +29,16 @@ export default function DestinationsCard({
   // console.log(backgroundClasses.join(" "));
 
   return (
-    <Link to={`pitch/${pitchName}`} className={backgroundClasses.join(" ")}>
+    <Link to={`pitch/${pitchId}`} className={backgroundClasses.join(" ")}>
       <img src={imageUrl} className="-z-10  absolute " />
 
       <div className="absolute  inset-0 bg-black/30 hover:bg-black/30"></div>
 
       <div className="relative  flex items-start justify-between p-4 sm:p-6 lg:p-8">
         <div className="sm:pt-18 pt-12 text-white lg:pt-24">
-          <h3 className="text-xl z-10 font-bold sm:text-2xl">{city}</h3>
+          <h3 className="text-xl z-10 font-bold sm:text-2xl">{pitchName}</h3>
 
-          <p className="text-sm z-10">{country}</p>
+          <p className="text-sm z-10">{city}</p>
         </div>
 
         <span className="inline-flex items-center gap-0.5 rounded-full bg-black px-2 py-1 text-xs font-semibold text-white">

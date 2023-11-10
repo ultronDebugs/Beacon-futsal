@@ -1,28 +1,97 @@
-import { Carousel } from "flowbite-react";
-import boot from "../assets/boot.png";
-import pic from "../assets/pitch.jpg";
-import pic2 from "../assets/pitchLanscape.jpg";
-import pic3 from "../assets/pitchPortrait2.jpg";
 import moment from "moment";
 import TimeBoard from "./TimeBoard";
-import PaymentButton from "../components/PaymentButton";
-import FlwPayment from "../components/FlwPayment";
+import { useParams } from "react-router-dom";
+// import PaymentButton from "../components/PaymentButton";
+// import FlwPayment from "../components/FlwPayment";
 import { ImageSlider } from "../components/ImageSlider";
-import CheckOutTable from "../components/CheckOutTable";
+// import CheckOutTable from "../components/CheckOutTable";
+import CheckoutForm from "../components/CheckoutForm";
+import { useState, useEffect } from "react";
+import { backendApi } from "../configs/Api";
 
 //
 export default function PitchInfoPage() {
+  type PitchType = {
+    name: string;
+    pricePerHour: number;
+    PitchOwnerId: string;
+    description: string;
+    Address: string;
+    images: [string, string, string, string, string];
+  };
+  // get PitchId
+  const { id } = useParams();
+  const pitchId = id;
+  console.log(pitchId);
+
   const today = moment().format("YYYY-MM-DD");
-  const images = [
-    { url: boot, alt: "image" },
-    { url: pic, alt: "image" },
-    { url: pic2, alt: "image" },
-    { url: pic3, alt: "image" },
-  ];
+
+  // pitch info and availability states respectively
+  const [pitchInfo, setPitchInfo] = useState<PitchType>({
+    Address: "",
+    description: "",
+    name: "",
+    PitchOwnerId: "",
+    pricePerHour: 0,
+    images: ["", "", "", "", ""],
+  });
+
+  const [pitchAvailability, setPitchAvailability] = useState([]);
+  const [date, setDate] = useState(today);
+
+  useEffect(() => {
+    // Function to fetch pitch availability from the backend based on pitchId and date
+    const fetchPitchAvailability = async () => {
+      try {
+        const response = await fetch(
+          `/api/pitchAvailability?pitchId=${pitchId}&date=${date}`
+        );
+        if (response.ok) {
+          const data = await response.json();
+          setPitchAvailability(data); // Update the state with the fetched pitch availability array
+        } else {
+          console.error("Error fetching pitch availability");
+        }
+      } catch (error) {
+        console.error("Error fetching pitch availability:", error);
+      }
+    };
+
+    // Call the fetchPitchAvailability function when the component mounts or when pitchId or date changes
+    fetchPitchAvailability();
+  }, [pitchId, date]); // The effect depends on pitchId and date, so it will run whenever they change
+
+  console.log(pitchAvailability);
+  console.log(pitchInfo);
+
+  useEffect(() => {
+    // Function to fetch pitch information from the backend
+    const fetchPitchInfo = async () => {
+      try {
+        const response = await fetch(`${backendApi}/pitches/${pitchId}`); // Replace this URL with your backend API endpoint
+        if (response.ok) {
+          const data = await response.json();
+          setPitchInfo(data.data); // Update the state with the fetched pitch information
+        } else {
+          console.error("Error fetching pitch information");
+        }
+      } catch (error) {
+        console.error("Error fetching pitch information:", error);
+      }
+    };
+
+    // Call the fetchPitchInfo function when the component mounts
+    fetchPitchInfo();
+  }, [pitchId]); // The empty dependency array ensures that this effect runs once after the initial render
+
+  const images = pitchInfo.images.map((image: string) => {
+    return { url: image, alt: "image" };
+  });
   // console.log(today);
+
   return (
-    <div className="h-[210vh] bg-white pt-4 dark:bg-gray-900">
-      <div className=" flex justify-center w-auto  border border-black ">
+    <div className="h-auto pb-6 bg-white pt-4 dark:bg-gray-900">
+      <div className=" flex justify-center w-auto   ">
         <div
           className=""
           style={{
@@ -39,7 +108,7 @@ export default function PitchInfoPage() {
       <section className="bg-white dark:bg-gray-900">
         <div className="py-8 px-4 mx-auto max-w-2xl lg:py-16">
           <h2 className="mb-2 text-xl font-semibold leading-none text-gray-900 md:text-2xl dark:text-white">
-            Plutous Club House
+            {pitchInfo.name}
           </h2>
           <p className="mb-4 text-xl font-extrabold leading-none text-gray-900 md:text-2xl dark:text-white">
             #1000
@@ -73,34 +142,7 @@ export default function PitchInfoPage() {
               </dd>
             </div>
           </dl>
-          <div className="flex items-center space-x-4">
-            <button
-              type="button"
-              className="text-white inline-flex items-center dark:bg-inherit bg-blue-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-            >
-              <svg
-                aria-hidden="true"
-                className="mr-1 -ml-1 w-5 h-5"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path>
-                <path
-                  fillRule="evenodd"
-                  d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
-                  clipRule="evenodd"
-                ></path>
-              </svg>
-              Edit
-            </button>
-            <button
-              type="button"
-              className="inline-flex items-center text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-900"
-            >
-              Book this Pitch
-            </button>
-          </div>
+          <div className="flex items-center space-x-4"></div>
         </div>
         <div
           className="flex
@@ -113,23 +155,15 @@ export default function PitchInfoPage() {
             // min={"2023-10-27"}
             min={today}
             onChange={(e) => {
-              console.log(e.target.value, "from input change");
+              setDate(e.target.value);
             }}
           />
           <TimeBoard />
         </div>
-        <div className="flex justify-around flex-wrap">
+        <div className="flex gap-x-80 gap-y-14 justify-around flex-wrap">
           {/* <Datepicker /> */}
 
-          <CheckOutTable />
-        </div>
-        <PaymentButton amount={10000} />
-        <div className="flex justify-center mt-4 mb-9">
-          <FlwPayment
-            Amount={10000}
-            email="customer@gmail.com"
-            phoneNumber="07083187511"
-          />
+          <CheckoutForm />
         </div>
       </section>
     </div>
