@@ -3,11 +3,17 @@ import TimeBoard from "./TimeBoard";
 import { useParams } from "react-router-dom";
 // import PaymentButton from "../components/PaymentButton";
 // import FlwPayment from "../components/FlwPayment";
-import { ImageSlider } from "../components/ImageSlider";
+// import { ImageSlider } from "../components/ImageSlider";
 // import CheckOutTable from "../components/CheckOutTable";
 import CheckoutForm from "../components/CheckoutForm";
 import { useState, useEffect } from "react";
 import { backendApi } from "../configs/Api";
+import Carousel from "../components/CarouselComponent";
+import React from "react";
+// import pic1 from "../assets/boot.png";
+// import pic2 from "../assets/pitch.jpg";
+// import pic3 from "../assets/pitchLanscape.jpg";
+// import pic4 from "../assets/sample2.jpeg";
 
 //
 export default function PitchInfoPage() {
@@ -17,12 +23,11 @@ export default function PitchInfoPage() {
     PitchOwnerId: string;
     description: string;
     Address: string;
-    images: [string, string, string, string, string];
+    images: string[];
   };
   // get PitchId
   const { id } = useParams();
   const pitchId = id;
-  console.log(pitchId);
 
   const today = moment().format("YYYY-MM-DD");
 
@@ -44,11 +49,11 @@ export default function PitchInfoPage() {
     const fetchPitchAvailability = async () => {
       try {
         const response = await fetch(
-          `/api/pitchAvailability?pitchId=${pitchId}&date=${date}`
+          `${backendApi}/booking/availability?pitchId=${pitchId}&date=${date}`
         );
         if (response.ok) {
           const data = await response.json();
-          setPitchAvailability(data); // Update the state with the fetched pitch availability array
+          setPitchAvailability(data.data); // Update the state with the fetched pitch availability array
         } else {
           console.error("Error fetching pitch availability");
         }
@@ -60,9 +65,6 @@ export default function PitchInfoPage() {
     // Call the fetchPitchAvailability function when the component mounts or when pitchId or date changes
     fetchPitchAvailability();
   }, [pitchId, date]); // The effect depends on pitchId and date, so it will run whenever they change
-
-  console.log(pitchAvailability);
-  console.log(pitchInfo);
 
   useEffect(() => {
     // Function to fetch pitch information from the backend
@@ -84,10 +86,14 @@ export default function PitchInfoPage() {
     fetchPitchInfo();
   }, [pitchId]); // The empty dependency array ensures that this effect runs once after the initial render
 
-  const images = pitchInfo.images.map((image: string) => {
-    return { url: image, alt: "image" };
-  });
+  console.log(pitchAvailability);
   // console.log(today);
+  //
+  const [times, setTimes] = React.useState<Array<string>>([]);
+
+  useEffect(() => {
+    console.log(times);
+  }, [times]);
 
   return (
     <div className="h-auto pb-6 bg-white pt-4 dark:bg-gray-900">
@@ -101,7 +107,8 @@ export default function PitchInfoPage() {
             margin: "0 auto",
           }}
         >
-          <ImageSlider images={images} />
+          {/* <ImageSlider images={images} /> */}
+          <Carousel slides={pitchInfo.images} />
         </div>
       </div>
 
@@ -148,22 +155,26 @@ export default function PitchInfoPage() {
           className="flex
         justify-center items-center gap-x-3 md:gap-24 my-8"
         >
-          <input
-            className="w-40 text-center h-10 bg-slate-500 text-blue-100 rounded-md outline-none "
-            placeholder="select date"
-            type="date"
-            // min={"2023-10-27"}
-            min={today}
-            onChange={(e) => {
-              setDate(e.target.value);
-            }}
-          />
-          <TimeBoard />
+          <div className="">
+            <div className="flex justify-center my-7">
+              <input
+                className="w-40 text-center h-10 bg-slate-500 text-blue-100 rounded-md outline-none "
+                placeholder="select date"
+                type="date"
+                // min={"2023-10-27"}
+                min={today}
+                onChange={(e) => {
+                  setPitchAvailability([]);
+                  setTimes([]);
+                  setDate(e.target.value);
+                }}
+              />
+            </div>
+            <TimeBoard availability={pitchAvailability} setTimes={setTimes} />
+          </div>
         </div>
         <div className="flex gap-x-80 gap-y-14 justify-around flex-wrap">
-          {/* <Datepicker /> */}
-
-          <CheckoutForm />
+          <CheckoutForm times={times} />
         </div>
       </section>
     </div>

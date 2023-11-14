@@ -2,6 +2,7 @@ import DestinationsCard from "../components/DestinationsCard";
 import PitchSearchBar from "../components/PitchSearchBar";
 import { useEffect, useState } from "react";
 import { backendApi } from "../configs/Api";
+import LoadingCard from "../components/LoadingCard";
 
 export default function SelectPitchPage() {
   const [searchField, setSearchField] = useState("");
@@ -48,8 +49,22 @@ export default function SelectPitchPage() {
     fetchPitches();
   }, []); // Empty dependency array ensures the effect runs only once after the initial render
 
-  console.log(pitches);
+  // console.log(pitches);
   // console.log(pitches[0].images[0]);
+  if (pitches.length <= 0) {
+    return (
+      <div className="bg-gray-900 flex items-center justify-center h-[112vh]">
+        <div className=" overflow-y-hidden grid md:grid-cols-2 sm:grid-cols-1 min-[500px]:ml-8 lg:grid-cols-3 grid-cols-1 gap-11 lg:ml-5 md:ml-8 xl:ml-16">
+          <LoadingCard />
+          <LoadingCard />
+          <LoadingCard />
+          <LoadingCard />
+          <LoadingCard />
+          <LoadingCard />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="pb-7 pt-1 h-[85vh] bg-white dark:bg-slate-900">
@@ -58,7 +73,7 @@ export default function SelectPitchPage() {
       <div className=" overflow-y-hidden grid md:grid-cols-2 sm:grid-cols-1 min-[500px]:ml-8 lg:grid-cols-3 grid-cols-1 gap-11 lg:ml-5 md:ml-8 xl:ml-16">
         {pitches.map((pitch: Pitch, index) => {
           return (
-            <div className="ml-3" key={index}>
+            <div className="ml-3 pt-6" key={index}>
               <DestinationsCard
                 pitchId={pitch.pitchId}
                 pitchName={pitch.name}

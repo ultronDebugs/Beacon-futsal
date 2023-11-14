@@ -1,7 +1,12 @@
 import { useState } from "react";
 import FlwPayment from "./FlwPayment";
-export default function CheckoutForm() {
-  const [bookInfo, setBookInfo] = useState({});
+
+// spacing
+
+export default function CheckoutForm({ times }: { times: string[] }) {
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+
   return (
     <form>
       <div className="mb-6 w-">
@@ -14,6 +19,9 @@ export default function CheckoutForm() {
         <input
           type="email"
           id="email"
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="name@flowbite.com"
           required
@@ -30,6 +38,9 @@ export default function CheckoutForm() {
           type="tel"
           id="phone"
           name="phone"
+          onChange={(e) => {
+            setPhoneNumber(e.target.value);
+          }}
           inputMode="numeric"
           placeholder="070xxxxxx"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -41,7 +52,7 @@ export default function CheckoutForm() {
       </div>
       <div className="flex items-start mb-6"></div>
 
-      <FlwPayment Amount={1000} email="" phoneNumber="" />
+      <FlwPayment Amount={1000} email={email} phoneNumber={phoneNumber} />
     </form>
   );
 }
