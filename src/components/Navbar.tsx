@@ -1,34 +1,34 @@
 // import type { RootState } from "../redux/store";
 // import { useSelector } from "react-redux";
 // import { userSignOut } from "../utils/firebase.utils";
-import { Link } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
+// import { Link } from "react-router-dom";
+// import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Navbar() {
   // const userState = useSelector((state: RootState) => state.user.value);
   // console.log(userState);
 
-  const { user, loginWithPopup, isAuthenticated, logout } = useAuth0();
+  // const { user, loginWithPopup, isAuthenticated, logout } = useAuth0();
   // const photoUrl = userState?.photoUrl;
-  console.log(user);
+  // console.log(user);
 
-  const tryLogin = () => {
-    loginWithPopup().then((value) => {
-      console.log("user has logged in the app, here is value >>>", value);
-    });
-  };
+  // const tryLogin = () => {
+  //   loginWithPopup().then((value) => {
+  //     console.log("user has logged in the app, here is value >>>", value);
+  //   });
+  // };
 
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="https://flowbite.com/" className="flex items-center">
           <img
-            src="https://flowbite.com/docs/images/logo.svg"
-            className="h-8 mr-3"
+            src="https://www.adaptivewfs.com/wp-content/uploads/2020/07/logo-placeholder-image.png"
+            className="h-12  mr-3"
             alt="Flowbite Logo"
           />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-            Flowbite
+            Footy time
           </span>
         </a>
         <button

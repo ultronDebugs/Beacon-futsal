@@ -1,7 +1,9 @@
 export default function TimeBoard({
   availability,
   setTimes,
+  times,
 }: {
+  times: string[];
   availability: { date: string; hour: string; available: boolean }[];
   setTimes: React.Dispatch<React.SetStateAction<Array<string>>>;
 }) {
@@ -25,7 +27,12 @@ export default function TimeBoard({
           {availability.map((time, index) => {
             if (time.available) {
               return (
-                <EnabledTime setTimes={setTimes} hour={time.hour} key={index} />
+                <EnabledTime
+                  times={times}
+                  setTimes={setTimes}
+                  hour={time.hour}
+                  key={index}
+                />
               );
             }
             if (!time.available) {
@@ -65,7 +72,9 @@ const DisabledTime = ({ hour }: { hour: string }) => {
 const EnabledTime = ({
   hour,
   setTimes,
+  times,
 }: {
+  times: string[];
   hour: string;
   setTimes: React.Dispatch<React.SetStateAction<Array<string>>>;
 }) => {
@@ -85,9 +94,8 @@ const EnabledTime = ({
               });
             }
             if (!e.target.checked) {
-              setTimes((prev) => {
-                return prev.splice(prev.indexOf(hour));
-              });
+              const updatedTimes = times.filter((item) => item !== hour);
+              setTimes(updatedTimes);
             }
           }}
           id="Row1"

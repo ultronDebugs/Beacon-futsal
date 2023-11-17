@@ -3,26 +3,24 @@ import TimeBoard from "./TimeBoard";
 import { useParams } from "react-router-dom";
 // import PaymentButton from "../components/PaymentButton";
 // import FlwPayment from "../components/FlwPayment";
-// import { ImageSlider } from "../components/ImageSlider";
 // import CheckOutTable from "../components/CheckOutTable";
 import CheckoutForm from "../components/CheckoutForm";
 import { useState, useEffect } from "react";
 import { backendApi } from "../configs/Api";
 import Carousel from "../components/CarouselComponent";
 import React from "react";
-// import pic1 from "../assets/boot.png";
-// import pic2 from "../assets/pitch.jpg";
-// import pic3 from "../assets/pitchLanscape.jpg";
-// import pic4 from "../assets/sample2.jpeg";
 
 //
 export default function PitchInfoPage() {
   type PitchType = {
     name: string;
     pricePerHour: number;
-    PitchOwnerId: string;
+    pitchOwnerId: string;
     description: string;
     Address: string;
+    bookedSlots: object;
+    size: string;
+    pitchId: string;
     images: string[];
   };
   // get PitchId
@@ -36,7 +34,10 @@ export default function PitchInfoPage() {
     Address: "",
     description: "",
     name: "",
-    PitchOwnerId: "",
+    pitchOwnerId: "",
+    bookedSlots: {},
+    pitchId: "",
+    size: "",
     pricePerHour: 0,
     images: ["", "", "", "", ""],
   });
@@ -86,14 +87,20 @@ export default function PitchInfoPage() {
     fetchPitchInfo();
   }, [pitchId]); // The empty dependency array ensures that this effect runs once after the initial render
 
-  console.log(pitchAvailability);
+  // console.log(pitchAvailability);
   // console.log(today);
   //
   const [times, setTimes] = React.useState<Array<string>>([]);
+  //
 
+  // the console log below is only for debugging purposes
+  // useEffect(() => {
+  //   console.log(times);
+  // }, [times]);
   useEffect(() => {
-    console.log(times);
-  }, [times]);
+    setPitchAvailability([]);
+    setTimes([]);
+  }, [date]);
 
   return (
     <div className="h-auto pb-6 bg-white pt-4 dark:bg-gray-900">
@@ -170,11 +177,22 @@ export default function PitchInfoPage() {
                 }}
               />
             </div>
-            <TimeBoard availability={pitchAvailability} setTimes={setTimes} />
+            <TimeBoard
+              times={times}
+              availability={pitchAvailability}
+              setTimes={setTimes}
+            />
           </div>
         </div>
         <div className="flex gap-x-80 gap-y-14 justify-around flex-wrap">
-          <CheckoutForm times={times} />
+          <CheckoutForm
+            setTimes={setTimes}
+            date={date}
+            setDate={setDate}
+            setPitchAvailability={setPitchAvailability}
+            pitchInfo={pitchInfo}
+            times={times}
+          />
         </div>
       </section>
     </div>
