@@ -9,6 +9,7 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [Name, setname] = useState("");
+  console.log(setEmail, Name, setPassword);
   return (
     <>
       <div className="flex min-h-full h-[90vh]  flex-1 dark:bg-gray-900 flex-col justify-center px-6 py-12 lg:px-8">

@@ -1,4 +1,4 @@
-import { usePaystackPayment, PaystackButton } from "react-paystack";
+import { usePaystackPayment } from "react-paystack";
 
 export default function PaymentButton({ amount }: { amount: number }) {
   const config = {

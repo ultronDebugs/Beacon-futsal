@@ -14,6 +14,7 @@ export default function PitchCard({
   pitchLocation: string;
 }) {
   console.log(pitchLocation);
+  console.log(pitchName, pitchDescription);
   return (
     <a
       href="#"
