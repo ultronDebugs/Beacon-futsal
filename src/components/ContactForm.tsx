@@ -1,7 +1,7 @@
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0 } from "@auth0/auth0-react";
 
 export default function ContactForm() {
-  const { getAccessTokenSilently } = useAuth0();
+  // const { getAccessTokenSilently } = useAuth0();
   return (
     <>
       <section className="bg-white dark:bg-gray-800">
@@ -60,11 +60,6 @@ export default function ContactForm() {
             </div>
             <button
               type="submit"
-              onClick={async (e) => {
-                e.preventDefault();
-                const token = await getAccessTokenSilently();
-                console.log(token);
-              }}
               className="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-blue-700 sm:w-fit hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
             >
               Send message
