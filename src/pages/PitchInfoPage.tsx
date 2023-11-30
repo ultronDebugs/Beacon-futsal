@@ -66,6 +66,10 @@ export default function PitchInfoPage() {
     // Call the fetchPitchAvailability function when the component mounts or when pitchId or date changes
     fetchPitchAvailability();
   }, [pitchId, date]); // The effect depends on pitchId and date, so it will run whenever they change
+  const formattedAmount = new Intl.NumberFormat("en-NG", {
+    style: "currency",
+    currency: "NGN",
+  }).format(pitchInfo.pricePerHour);
 
   useEffect(() => {
     // Function to fetch pitch information from the backend
@@ -125,7 +129,8 @@ export default function PitchInfoPage() {
             {pitchInfo.name}
           </h2>
           <p className="mb-4 text-xl font-extrabold leading-none text-gray-900 md:text-2xl dark:text-white">
-            #1000
+            {formattedAmount}
+            <span className="ml-3">Per Hour</span>
           </p>
           <dl>
             <dt className="mb-2 font-semibold leading-none text-gray-900 dark:text-white">

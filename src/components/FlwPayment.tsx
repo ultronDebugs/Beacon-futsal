@@ -40,7 +40,7 @@ export default function FlwPayment({
     customer: {
       email: email,
       phone_number: phoneNumber,
-      name: "john doe",
+      name: name,
       subAccounts: [
         {
           id: "RS_A8EB7D4D9C66C0B1C75014EE67D4D663",
