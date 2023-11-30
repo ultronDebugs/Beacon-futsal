@@ -12,17 +12,30 @@ import React from "react";
 
 //
 export default function PitchInfoPage() {
-  type PitchType = {
-    name: string;
-    pricePerHour: number;
-    pitchOwnerId: string;
-    description: string;
-    Address: string;
-    bookedSlots: object;
-    size: string;
+  // type PitchType = {
+  //   name: string;
+  //   pricePerHour: number;
+  //   pitchOwnerId: string;
+  //   description: string;
+  //   Address: string;
+  //   bookedSlots: object;
+  //   size: string;
+  //   pitchId: string;
+  //   images: string[];
+  // };
+
+  interface Pitch {
     pitchId: string;
+    name: string;
+    size: string;
+    pitchAddress: string;
+    category: "7 Aside" | "5 Aside";
+    description: string;
+    pricePerHour: number;
     images: string[];
-  };
+    bookedSlots?: object;
+    pitchOwnerId: string;
+  }
   // get PitchId
   const { id } = useParams();
   const pitchId = id;
@@ -30,14 +43,15 @@ export default function PitchInfoPage() {
   const today = moment().format("YYYY-MM-DD");
 
   // pitch info and availability states respectively
-  const [pitchInfo, setPitchInfo] = useState<PitchType>({
-    Address: "",
+  const [pitchInfo, setPitchInfo] = useState<Pitch>({
+    pitchAddress: "",
     description: "",
     name: "",
     pitchOwnerId: "",
     bookedSlots: {},
     pitchId: "",
     size: "",
+    category: "5 Aside",
     pricePerHour: 0,
     images: ["", "", "", "", ""],
   });
@@ -149,7 +163,7 @@ export default function PitchInfoPage() {
                 Category
               </dt>
               <dd className="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400">
-                7 Aside pitch
+                {pitchInfo.category || "7 Aside "}
               </dd>
             </div>
             <div>

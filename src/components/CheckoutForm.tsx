@@ -2,13 +2,25 @@ import { useState } from "react";
 import FlwPayment from "./FlwPayment";
 
 // spacing
-interface pitch {
-  pitchOwnerId: string;
+// interface pitch {
+//   pitchOwnerId: string;
+//   name: string;
+//   size: string;
+//   pricePerHour: number;
+//   images: string[];
+//   bookedSlots: object;
+// }
+interface Pitch {
+  pitchId: string;
   name: string;
   size: string;
+  pitchAddress: string;
+  category: "7 Aside" | "5 Aside";
+  description: string;
   pricePerHour: number;
   images: string[];
-  bookedSlots: object;
+  bookedSlots?: object;
+  pitchOwnerId: string;
 }
 
 export default function CheckoutForm({
@@ -24,7 +36,7 @@ export default function CheckoutForm({
   times: string[];
   date: string;
   setDate: any;
-  pitchInfo: pitch;
+  pitchInfo: Pitch;
 }) {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
