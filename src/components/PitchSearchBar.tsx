@@ -1,9 +1,15 @@
 import { Dispatch, SetStateAction } from "react";
 
+export type Location = "" | "kaduna" | "abuja" | "kano" | "katsina";
+
 export default function PitchSearchBar({
   setSearchField,
-}: {
+  handleLocationChange,
+}: // handleSearchPitch,
+{
   setSearchField: Dispatch<SetStateAction<string>>;
+  handleLocationChange: (newLocation: string) => void;
+  // handleSearchPitch: () => void;
 }) {
   return (
     <div className="flex flex-col items-center justify-between p-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 sm:flex-row">
@@ -36,6 +42,7 @@ export default function PitchSearchBar({
             placeholder="Search for pitch"
             onChange={(e) => {
               setSearchField(e.target.value);
+              // handleSearchPitch();
             }}
           />
         </div>
@@ -43,15 +50,21 @@ export default function PitchSearchBar({
           Select Locations:
         </label>
         <select
+          name="location"
+          onChange={(e) => {
+            handleLocationChange(e.target.value);
+            // console.log(e.target.value);
+          }}
           id="category"
           className="bg-white border border-gray-300 text-gray-900 sm:w-40 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
         >
-          <option value="all" defaultValue={1}>
+          <option value="" defaultValue={1}>
             All Locations
           </option>
-          <option value="marketing">Kaduna</option>
-          <option value="application">Abuja</option>
-          <option value="publisher">Katsina</option>
+          <option value="kaduna">Kaduna</option>
+          <option value="abuja">Abuja</option>
+          <option value="kano">Kano</option>
+          <option value="katsina">Katsina</option>
         </select>
       </div>
       <div className="hidden text-sm text-gray-600 dark:text-gray-400 sm:block">
