@@ -24,14 +24,13 @@ export default function SelectPitchPage() {
   };
   console.log(searchField);
 
-  const [filteredPitches, setFilteredPitches] = useState<Pitch[]>([]);
-
   const handleSearchPitch = () => {
     if (pitches) {
       setFilteredPitches(
-        pitches.filter((pitch: Pitch) =>
-          pitch.name.toLowerCase().includes(searchField.toLowerCase())
-        )
+        pitches ??
+          pitches.filter((pitch: Pitch) =>
+            pitch.name.toLowerCase().includes(searchField.toLowerCase())
+          )
       );
       console.log("handle search working");
     }
@@ -43,8 +42,8 @@ export default function SelectPitchPage() {
     const response = await axios.get(
       `${backendApi}/pitches?location=${location}`
     );
-    console.log(response);
-    return response.data;
+    // console.log(response);
+    return response.data.data;
   };
   const handleLocationChange = (newLocation: string) => {
     // Update the location state and trigger a refetch
@@ -63,6 +62,7 @@ export default function SelectPitchPage() {
   } = useQuery(["pitches", location], () => fetchData(location), {
     enabled: false, // Set to false initially, will be enabled on location change
   });
+  const [filteredPitches, setFilteredPitches] = useState([]);
 
   useEffect(handleSearchPitch, [pitches, searchField]);
   useEffect(() => {
@@ -91,20 +91,21 @@ export default function SelectPitchPage() {
           </div>
         ) : pitches ? (
           <div className=" overflow-y-hidden grid md:grid-cols-2 sm:grid-cols-1 min-[500px]:ml-8 lg:grid-cols-3 grid-cols-1 gap-11 lg:ml-5 md:ml-8 xl:ml-16 mb-24">
-            {filteredPitches.map((pitch: Pitch, index: number) => {
-              return (
-                <div className="ml-3 pt-6" key={index}>
-                  <DestinationsCard
-                    pitchId={pitch.pitchId}
-                    pitchName={pitch.name}
-                    city={"kaduna"}
-                    key={index}
-                    imageUrl={pitch.images[index]}
-                    // key={index}
-                  />
-                </div>
-              );
-            })}
+            {filteredPitches &&
+              filteredPitches?.map((pitch: Pitch, index: number) => {
+                return (
+                  <div className="ml-3 pt-6" key={index}>
+                    <DestinationsCard
+                      pitchId={pitch.pitchId}
+                      pitchName={pitch.name}
+                      city={"kaduna"}
+                      key={index}
+                      imageUrl={pitch.images[index]}
+                      // key={index}
+                    />
+                  </div>
+                );
+              })}
           </div>
         ) : (
           <p>no data available</p>
