@@ -99,7 +99,7 @@ export default function SelectPitchPage() {
                       pitchId={pitch.pitchId}
                       pitchName={pitch.name}
                       city={"kaduna"}
-                      key={index}
+                      key={index + index}
                       imageUrl={pitch.images[index]}
                       // key={index}
                     />

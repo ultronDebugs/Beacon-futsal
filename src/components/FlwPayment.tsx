@@ -87,9 +87,12 @@ export default function FlwPayment({
       }
       console.log(response.data); // Handle the response as needed
       console.log(bookingInfo);
+      if (response.status >= 400) {
+        toast.error("booking error");
+      }
     } catch (error) {
       console.error("Error submitting booking:", error);
-      toast.error("booking req failed");
+      // toast.error("booking req failed");
     }
   };
   const handleFlutterPayment = useFlutterwave(config);
