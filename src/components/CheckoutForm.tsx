@@ -42,7 +42,7 @@ export default function CheckoutForm({
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const pricePerHour = pitchInfo.pricePerHour;
-
+  console.log(pricePerHour);
   return (
     <form>
       <div className="mb-6 w-">
@@ -114,7 +114,7 @@ export default function CheckoutForm({
         times={times}
         setEmail={setEmail}
         setPhoneNumber={setPhoneNumber}
-        amount={pricePerHour * times.length}
+        amount={500 * times.length}
         email={email}
         phoneNumber={phoneNumber}
         setTimes={setTimes}

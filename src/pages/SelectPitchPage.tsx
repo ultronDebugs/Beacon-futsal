@@ -27,10 +27,9 @@ export default function SelectPitchPage() {
   const handleSearchPitch = () => {
     if (pitches) {
       setFilteredPitches(
-        pitches ??
-          pitches.filter((pitch: Pitch) =>
-            pitch.name.toLowerCase().includes(searchField.toLowerCase())
-          )
+        pitches.filter((pitch: Pitch) =>
+          pitch.name.toLowerCase().includes(searchField.toLowerCase())
+        )
       );
       console.log("handle search working");
     }
@@ -77,6 +76,11 @@ export default function SelectPitchPage() {
         setSearchField={setSearchField}
       />
       <br />
+      {filteredPitches.length < 1 ? (
+        <h1 className="text-white font-semibold text-2xl text-center">
+          No pitch found
+        </h1>
+      ) : null}
       <Scroll height={85}>
         {isLoading ? (
           <div className="bg-gray-900 flex items-center justify-center  h-[112vh]">
@@ -91,21 +95,20 @@ export default function SelectPitchPage() {
           </div>
         ) : pitches ? (
           <div className=" overflow-y-hidden grid md:grid-cols-2 sm:grid-cols-1 min-[500px]:ml-8 lg:grid-cols-3 grid-cols-1 gap-11 lg:ml-5 md:ml-8 xl:ml-16 mb-24">
-            {filteredPitches &&
-              filteredPitches?.map((pitch: Pitch, index: number) => {
-                return (
-                  <div className="ml-3 pt-6" key={index}>
-                    <DestinationsCard
-                      pitchId={pitch.pitchId}
-                      pitchName={pitch.name}
-                      city={"kaduna"}
-                      key={index + index}
-                      imageUrl={pitch.images[index]}
-                      // key={index}
-                    />
-                  </div>
-                );
-              })}
+            {filteredPitches?.map((pitch: Pitch, index: number) => {
+              return (
+                <div className="ml-3 pt-6" key={index}>
+                  <DestinationsCard
+                    pitchId={pitch.pitchId}
+                    pitchName={pitch.name}
+                    city={"kaduna"}
+                    key={index + index}
+                    imageUrl={pitch.images[index]}
+                    // key={index}
+                  />
+                </div>
+              );
+            })}
           </div>
         ) : (
           <p>no data available</p>

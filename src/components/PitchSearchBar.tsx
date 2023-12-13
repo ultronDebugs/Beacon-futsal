@@ -42,6 +42,7 @@ export default function PitchSearchBar({
             placeholder="Search for pitch"
             onChange={(e) => {
               setSearchField(e.target.value);
+              // console.log(e.target.value);
               // handleSearchPitch();
             }}
           />
