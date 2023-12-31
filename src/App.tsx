@@ -17,11 +17,11 @@ import SelectPitchPage from "./pages/SelectPitchPage";
 import PitchInfoPage from "./pages/PitchInfoPage";
 import AddPitchPage from "./pages/AddPitchPage";
 // import { createPortal } from "react-dom";
-// import LoginModal from "./components/LoginModal";
+// import LoginModal from "./components/LoginModal";s
 
 function App() {
   // const [userState, setUserState] = useState<null | User>(null);
-  // // setUserState(data);
+  // setUserState(data);
   // const portal = document.getElementById("portal");
   // const [openModal, setOpenModal] = useState(true);
 
