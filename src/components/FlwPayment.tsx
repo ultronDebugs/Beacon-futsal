@@ -17,11 +17,13 @@ export default function FlwPayment({
   date,
   setEmail,
   setDate,
+  goHome,
 }: {
   name: string;
   email: string;
   phoneNumber: string;
   amount: number;
+  goHome: any;
   times: string[];
   pitchInfo: any;
   date: string;
@@ -84,9 +86,10 @@ export default function FlwPayment({
       const response = await axios.post(`${backendApi}/booking/`, bookingInfo);
       if (response.status >= 200 && response.status < 300) {
         toast.success("booking updated successfully");
+        goHome();
       }
-      console.log(response.data); // Handle the response as needed
-      console.log(bookingInfo);
+      // console.log(response.data); // Handle the response as needed
+      // console.log(bookingInfo);
       if (response.status >= 400) {
         toast.error("booking error");
       }
@@ -112,6 +115,7 @@ export default function FlwPayment({
           handleFlutterPayment({
             callback: (response) => {
               console.log(response);
+              console.log(bookingInfo);
               closePaymentModal(); // this will close the modal programmatically
               resetAll(); // this will reset all fields from the pitch page
 

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import FlwPayment from "./FlwPayment";
+import { useNavigate } from "react-router-dom";
 
 // spacing
 // interface pitch {
@@ -41,8 +42,14 @@ export default function CheckoutForm({
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const pricePerHour = pitchInfo.pricePerHour;
-  console.log(pricePerHour);
+  // const pricePerHour = pitchInfo.pricePerHour;
+  // console.log(pricePerHour);
+  const navigate = useNavigate();
+  const goHome = () => {
+    setTimeout(() => {
+      navigate("/");
+    }, 5000);
+  };
   return (
     <form>
       <div className="mb-6 w-">
@@ -109,12 +116,13 @@ export default function CheckoutForm({
       <FlwPayment
         date={date}
         name={name}
+        goHome={goHome}
         setDate={setDate}
         pitchInfo={pitchInfo}
         times={times}
         setEmail={setEmail}
         setPhoneNumber={setPhoneNumber}
-        amount={500 * times.length}
+        amount={1000}
         email={email}
         phoneNumber={phoneNumber}
         setTimes={setTimes}
