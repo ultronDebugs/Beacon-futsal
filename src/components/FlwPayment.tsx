@@ -9,29 +9,31 @@ export default function FlwPayment({
   email,
   phoneNumber,
   amount,
-  setTimes,
+  // setTimes,
   times,
   pitchInfo,
-  setPitchAvailability,
-  setPhoneNumber,
+  // setPitchAvailability,
+  // setPhoneNumber,
   date,
-  setEmail,
-  setDate,
-  goHome,
-}: {
+  // setEmail,
+  // setDate,
+  refetchAvailability,
+}: // goHome,
+{
   name: string;
   email: string;
   phoneNumber: string;
   amount: number;
-  goHome: any;
+  goHome?: any;
+  refetchAvailability: any;
   times: string[];
   pitchInfo: any;
   date: string;
-  setTimes: React.Dispatch<React.SetStateAction<Array<string>>>;
+  setTimes?: React.Dispatch<React.SetStateAction<Array<string>>>;
   setPitchAvailability: any;
-  setEmail: any;
-  setDate: any;
-  setPhoneNumber: any;
+  setEmail?: any;
+  setDate?: any;
+  setPhoneNumber?: any;
 }) {
   const config = {
     public_key: "FLWPUBK_TEST-4e43205694a70c38fcd90dfb41934a43-X",
@@ -60,15 +62,15 @@ export default function FlwPayment({
       logo: "https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg",
     },
   };
-  const today = moment().format("YYYY-MM-DD");
+  // const today = moment().format("YYYY-MM-DD");
 
-  const resetAll = () => {
-    setTimes([]);
-    setPitchAvailability([]);
-    setEmail("");
-    setDate(today);
-    setPhoneNumber("");
-  };
+  // const resetAll = () => {
+  //   setTimes([]);
+  //   setPitchAvailability([]);
+  //   setEmail("");
+  //   setDate(today);
+  //   setPhoneNumber("");
+  // };
   const bookingInfo = {
     amountPaid: times.length * amount,
     bookingTimes: times,
@@ -86,7 +88,7 @@ export default function FlwPayment({
       const response = await axios.post(`${backendApi}/booking/`, bookingInfo);
       if (response.status >= 200 && response.status < 300) {
         toast.success("booking updated successfully");
-        goHome();
+        // goHome();
       }
       // console.log(response.data); // Handle the response as needed
       // console.log(bookingInfo);
@@ -117,12 +119,13 @@ export default function FlwPayment({
               console.log(response);
               console.log(bookingInfo);
               closePaymentModal(); // this will close the modal programmatically
-              resetAll(); // this will reset all fields from the pitch page
+              // resetAll(); // this will reset all fields from the pitch page
+              handleBookingSubmit();
 
+              refetchAvailability(); // this will refresh the availability list
               toast.success(
                 "booking payment successFull pls check your email and text messages for receipt "
               );
-              handleBookingSubmit();
             },
             onClose: () => {
               console.log("Closed payment modal");

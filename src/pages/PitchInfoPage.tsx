@@ -58,6 +58,30 @@ export default function PitchInfoPage() {
 
   const [pitchAvailability, setPitchAvailability] = useState([]);
   const [date, setDate] = useState(today);
+  const [times, setTimes] = React.useState<Array<string>>([]);
+
+  // Function to fetch pitch availability from the backend based on pitchId and date
+  const fetchPitchAvailability = async () => {
+    try {
+      const response = await fetch(
+        `${backendApi}/booking/availability?pitchId=${pitchId}&date=${date}`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setPitchAvailability(data.data); // Update the state with the fetched pitch availability array
+      } else {
+        console.error("Error fetching pitch availability");
+      }
+    } catch (error) {
+      console.error("Error fetching pitch availability:", error);
+    }
+  };
+
+  const refetchAvailability = () => {
+    setTimes([]);
+    setPitchAvailability([]);
+    fetchPitchAvailability();
+  };
 
   useEffect(() => {
     // Function to fetch pitch availability from the backend based on pitchId and date
@@ -76,10 +100,10 @@ export default function PitchInfoPage() {
         console.error("Error fetching pitch availability:", error);
       }
     };
-
     // Call the fetchPitchAvailability function when the component mounts or when pitchId or date changes
     fetchPitchAvailability();
   }, [pitchId, date]); // The effect depends on pitchId and date, so it will run whenever they change
+
   const formattedAmount = new Intl.NumberFormat("en-NG", {
     style: "currency",
     currency: "NGN",
@@ -108,7 +132,6 @@ export default function PitchInfoPage() {
   // console.log(pitchAvailability);
   // console.log(today);
   //
-  const [times, setTimes] = React.useState<Array<string>>([]);
   //
 
   // the console log below is only for debugging purposes
@@ -207,6 +230,7 @@ export default function PitchInfoPage() {
           <CheckoutForm
             setTimes={setTimes}
             date={date}
+            refetchAvailability={refetchAvailability}
             setDate={setDate}
             setPitchAvailability={setPitchAvailability}
             pitchInfo={pitchInfo}

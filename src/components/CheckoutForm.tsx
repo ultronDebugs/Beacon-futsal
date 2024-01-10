@@ -31,12 +31,14 @@ export default function CheckoutForm({
   setTimes,
   setDate,
   setPitchAvailability,
+  refetchAvailability,
 }: {
   setTimes: React.Dispatch<React.SetStateAction<Array<string>>>;
   setPitchAvailability: any;
   times: string[];
   date: string;
   setDate: any;
+  refetchAvailability: any;
   pitchInfo: Pitch;
 }) {
   const [email, setEmail] = useState("");
@@ -120,9 +122,10 @@ export default function CheckoutForm({
         setDate={setDate}
         pitchInfo={pitchInfo}
         times={times}
+        refetchAvailability={refetchAvailability}
         setEmail={setEmail}
         setPhoneNumber={setPhoneNumber}
-        amount={1000}
+        amount={pitchInfo.pricePerHour * times.length}
         email={email}
         phoneNumber={phoneNumber}
         setTimes={setTimes}
