@@ -85,6 +85,7 @@ export const signInWithGoogle = async () => {
 
       // signedInUser = user;
       return user;
+
       // ...
     })
     .then((user) => console.log(user))

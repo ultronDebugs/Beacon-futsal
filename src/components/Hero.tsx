@@ -1,5 +1,6 @@
 import boot from "../assets/boot.png";
 import { Link } from "react-router-dom";
+// import pic from "../assets/pitch.jpg";
 
 export default function Hero() {
   return (
