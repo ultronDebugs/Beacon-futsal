@@ -16,6 +16,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import SelectPitchPage from "./pages/SelectPitchPage";
 import PitchInfoPage from "./pages/PitchInfoPage";
 import AddPitchPage from "./pages/AddPitchPage";
+import SatesPage from "./pages/StatesPage";
 // import { createPortal } from "react-dom";
 // import LoginModal from "./components/LoginModal";s
 
@@ -57,6 +58,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/states" element={<SatesPage />} />
         <Route path="signin" element={<SignIn />} />
         <Route path="/pitches" element={<SelectPitchPage />} />
         <Route path="/:id" element={<NotFoundPage />} />
