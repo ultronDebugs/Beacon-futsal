@@ -2,7 +2,8 @@ import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { backendApi } from "../configs/Api";
-import moment from "moment";
+import { useNavigate } from "react-router-dom";
+// import moment from "moment";
 
 export default function FlwPayment({
   name,
@@ -35,6 +36,7 @@ export default function FlwPayment({
   setDate?: any;
   setPhoneNumber?: any;
 }) {
+  const navigator = useNavigate();
   const config = {
     public_key: "FLWPUBK_TEST-4e43205694a70c38fcd90dfb41934a43-X",
     tx_ref: Date.now().toString(),
@@ -88,6 +90,10 @@ export default function FlwPayment({
       const response = await axios.post(`${backendApi}/booking/`, bookingInfo);
       if (response.status >= 200 && response.status < 300) {
         toast.success("booking updated successfully");
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          navigator("/");
+        }, 3000);
         // goHome();
       }
       // console.log(response.data); // Handle the response as needed

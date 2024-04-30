@@ -3,7 +3,7 @@ import TimeBoard from "./TimeBoard";
 import { useParams } from "react-router-dom";
 // import PaymentButton from "../components/PaymentButton";
 // import FlwPayment from "../components/FlwPayment";
-// import CheckOutTable from "../components/CheckOutTable";
+
 import CheckoutForm from "../components/CheckoutForm";
 import { useState, useEffect } from "react";
 import { backendApi } from "../configs/Api";
@@ -12,6 +12,7 @@ import React from "react";
 
 //
 export default function PitchInfoPage() {
+  // const navigator = useNavigate();
   // type PitchType = {
   //   name: string;
   //   pricePerHour: number;
@@ -63,6 +64,7 @@ export default function PitchInfoPage() {
   // Function to fetch pitch availability from the backend based on pitchId and date
   const fetchPitchAvailability = async () => {
     try {
+      console.log("Fetching pitch availability called");
       const response = await fetch(
         `${backendApi}/booking/availability?pitchId=${pitchId}&date=${date}`
       );

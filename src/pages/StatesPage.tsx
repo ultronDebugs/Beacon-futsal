@@ -32,7 +32,7 @@ export default function SatesPage() {
 function Card({ name, image }: { name: string; image: string }) {
   return (
     <div className="relative group overflow-hidden rounded-lg dark:bg-gray-800">
-      <Link className="absolute inset-0 focus:not-sr-only" to="#">
+      <Link className="absolute inset-0 focus:not-sr-only" to={`${name}`}>
         <span className="sr-only">View</span>
       </Link>
       <div className="">
