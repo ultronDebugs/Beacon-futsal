@@ -41,6 +41,7 @@ export default function PitchInfoPage() {
   const { id } = useParams();
   const pitchId = id;
 
+  console.log(useParams());
   const today = moment().format("YYYY-MM-DD");
 
   // pitch info and availability states respectively

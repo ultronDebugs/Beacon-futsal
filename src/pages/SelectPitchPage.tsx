@@ -22,7 +22,6 @@ export default function SelectPitchPage() {
     bookingSlots: Record<string, string>; // Assuming bookingSlots is an object with dynamic keys and any values
     subscription: boolean;
   };
-  console.log(searchField);
 
   const handleSearchPitch = () => {
     if (pitches) {

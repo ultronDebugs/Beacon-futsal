@@ -31,27 +31,26 @@ export default function SatesPage() {
 
 function Card({ name, image }: { name: string; image: string }) {
   return (
-    <div className="relative group overflow-hidden rounded-lg dark:bg-gray-800">
-      <Link className="absolute inset-0 focus:not-sr-only" to={`${name}`}>
-        <span className="sr-only">View</span>
-      </Link>
-      <div className="">
-        <img
-          alt="San Francisco"
-          className="object-cover"
-          height={225}
-          src={image}
-          style={{
-            aspectRatio: "400/225",
-            width: "full",
-            objectFit: "cover",
-          }}
-          //   width={400}
-        />
+    <Link to={`${name}`}>
+      <div className="relative inset-0 focus:not-sr-only group overflow-hidden rounded-lg dark:bg-gray-800">
+        <div className="">
+          <img
+            alt="location"
+            className="object-cover"
+            height={225}
+            src={image}
+            style={{
+              aspectRatio: "400/225",
+              width: "full",
+              objectFit: "cover",
+            }}
+            //   width={400}
+          />
+        </div>
+        <div className="bg-gray-50 text-gray-100 dark:bg-gray-800 p-4">
+          <h3 className="font-semibold">{name}</h3>
+        </div>
       </div>
-      <div className="bg-gray-50 text-gray-100 dark:bg-gray-800 p-4">
-        <h3 className="font-semibold">{name}</h3>
-      </div>
-    </div>
+    </Link>
   );
 }

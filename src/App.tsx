@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import SignUp from "./pages/SignUp";
-import SignIn from "./pages/SignIn";
+
 import Navbar from "./components/Navbar";
 // import { useDispatch } from "react-redux";
 // import { onAuthStateChanged } from "firebase/auth";
@@ -12,10 +11,10 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import Home from "./pages/Home";
 import Footer from "./components/Footer";
+import StatePage from "./pages/Statepage";
 import NotFoundPage from "./pages/NotFoundPage";
 import SelectPitchPage from "./pages/SelectPitchPage";
 import PitchInfoPage from "./pages/PitchInfoPage";
-import AddPitchPage from "./pages/AddPitchPage";
 import SatesPage from "./pages/StatesPage";
 // import { createPortal } from "react-dom";
 // import LoginModal from "./components/LoginModal";s
@@ -51,20 +50,13 @@ function App() {
       {/* <div onClick={getUserAuth}> something</div> */}
       <ToastContainer />
       <Navbar />
-      {/* {createPortal(
-        <LoginModal openModal={openModal} setOpenModal={setOpenModal} />,
-        portal as HTMLElement
-      )} */}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/states/:statesId" element={<SignUp />} />
+        <Route path="/states/:id" element={<StatePage />} />
         <Route path="/states" element={<SatesPage />} />
-        <Route path="signin" element={<SignIn />} />
         <Route path="/pitches" element={<SelectPitchPage />} />
         <Route path="/:id" element={<NotFoundPage />} />
         <Route path="/pitches/pitch/:id" element={<PitchInfoPage />} />
-        <Route path="/addPitch" element={<AddPitchPage />} />
       </Routes>
       <Footer />
     </>
