@@ -7,7 +7,7 @@ const cityData = [
       "https://images.unsplash.com/photo-1700085579734-f981f9c4144d?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
-    city: "Lagos",
+    city: "Kano",
     image:
       "https://images.unsplash.com/photo-1605491639366-26e399b040f8?q=80&w=1825&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
